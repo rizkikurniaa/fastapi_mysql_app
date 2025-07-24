@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual Environment
+env/
+venv/
+ENV/
+.venv/
+.Python
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# MySQL dump
+*.sql
+
+# Logs
+*.log
+
+# Uvicorn default log
+*.access.log
+*.error.log
+
+# Migrations (jika pakai Alembic nanti)
+migrations/
+
+# Cache
+.cache/
+*.egg-info/
+
+# dotenv (kalau nanti pakai)
+.env
+.env.*
+
+# Jupyter (kalau pakai IPython Notebook)
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
