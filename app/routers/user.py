@@ -4,15 +4,14 @@ from app.schemas import user as user_schema
 from app.database import SessionLocal
 from app.crud import user as user_crud
 from fastapi import HTTPException
+from app.auth.deps import get_current_user
+from app.database import get_db
 
-router = APIRouter(prefix="/users", tags=["users"])
+router = APIRouter()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+@router.get("/me")
+def get_profile(current_user = Depends(get_current_user)):
+    return {"email": current_user["sub"]}
 
 @router.get("/", response_model=list[user_schema.UserResponse])
 def read_users(db: Session = Depends(get_db)):
