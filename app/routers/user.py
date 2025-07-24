@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app import schemas, crud
+from app.schemas import user as user_schema
 from app.database import SessionLocal
+from app.crud import user as user_crud
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -12,10 +13,10 @@ def get_db():
     finally:
         db.close()
 
-@router.get("/", response_model=list[schemas.UserResponse])
+@router.get("/", response_model=list[user_schema.UserResponse])
 def read_users(db: Session = Depends(get_db)):
-    return crud.get_users(db)
+    return user_crud.get_users(db)
 
-@router.post("/", response_model=schemas.UserResponse)
-def create_new_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    return crud.create_user(db, user)
+@router.post("/", response_model=user_schema.UserResponse)
+def create_new_user(user: user_schema.UserCreate, db: Session = Depends(get_db)):
+    return user_crud.create_user(db, user)
